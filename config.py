@@ -2,6 +2,7 @@
 
 import requests as req
 import logging 
+import re
 
 SESSION = req.Session()
 
@@ -15,6 +16,8 @@ class HideSensitiveData(logging.Filter):  #added a hidding filter
     
     def filter(self, record):
         record.msg= str(record.msg).replace(ADMIN_PW, "******")
+        #record.msg= re.sub(r'Authorization.*?,',
+         #                  'Authorization\': \'******\', ', str(record.msg))
         return True
 
 LOG.addFilter(HideSensitiveData())

@@ -2,24 +2,26 @@ INFO     root:conftest.py:8 login_as_******
 DEBUG    root:conftest.py:11 {'username': '******', 'password': '******'}
 DEBUG    urllib3.connectionpool:connectionpool.py:244 Starting new HTTP connection (1): localhost:8080
 DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "POST /auth/login HTTP/1.1" 200 285
-INFO     root:test_comments.py:9 test_get_all_comments
-INFO     root:comments.py:10 get_all_comments
-DEBUG    root:utils.py:12 Request headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkX2hhc2giOiIkMmIkMTIkQS9vRVBVNU5lc3hjM3ozbXJQcTg5dTM4N3RoMy5wOTRsb2trcFd6NS5Ba0ZTWmtpSFV6SUciLCJyb2xlcyI6ImFkbWluIn0.lc0oKbSZSIqTMSgIGy9uwFG-J4tWJVf4bDGU35eic80', 'Accept': 'application/json'}
-DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "GET /comments HTTP/1.1" 307 None
-DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "GET /comments/ HTTP/1.1" 200 259
-DEBUG    root:test_comments.py:11 [{'id': 1, 'comment_text': 'second comment', 'likes': 0}, {'id': 2, 'comment_text': 'updated with id 2', 'likes': 1}, {'id': 3, 'comment_text': 'first post', 'likes': 0}, {'id': 4, 'comment_text': 'first post', 'likes': 0}, {'id': 5, 'comment_text': 'updated to second part', 'likes': 3}]
-INFO     root:test_comments.py:15 test_cud_comment
-INFO     root:comments.py:16 create_comments
-DEBUG    root:utils.py:12 Request headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkX2hhc2giOiIkMmIkMTIkQS9vRVBVNU5lc3hjM3ozbXJQcTg5dTM4N3RoMy5wOTRsb2trcFd6NS5Ba0ZTWmtpSFV6SUciLCJyb2xlcyI6ImFkbWluIn0.lc0oKbSZSIqTMSgIGy9uwFG-J4tWJVf4bDGU35eic80', 'Accept': 'application/json'}
-DEBUG    root:comments.py:19 Request payload: {'text': 'first post'}
-DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "POST /comments/?text=first+post HTTP/1.1" 201 47
-DEBUG    root:test_comments.py:20 {'id': 14, 'comment_text': 'first post', 'likes': 0}
-INFO     root:comments.py:26 update_comment
+INFO     root:test_users_workflow.py:7 test_user_permissions
+INFO     root:users.py:19 create_user
 DEBUG    root:utils.py:12 Request headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkX2hhc2giOiIkMmIkMTIkQS9vRVBVNU5lc3hjM3ozbXJQcTg5dTM4N3RoMy5wOTRsb2trcFd6NS5Ba0ZTWmtpSFV6SUciLCJyb2xlcyI6ImFkbWluIn0.lc0oKbSZSIqTMSgIGy9uwFG-J4tWJVf4bDGU35eic80', 'Accept': 'application/json', 'Conent-type': 'application/json'}
-DEBUG    root:comments.py:35 Request payload: {'comment_text': 'updated to second part', 'likes': 3}
-DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "PUT /comments/14 HTTP/1.1" 200 59
-DEBUG    root:test_comments.py:27 {'id': 14, 'comment_text': 'updated to second part', 'likes': 3}
-INFO     root:comments.py:40 deleted_comment
+DEBUG    root:users.py:24 Request payload: {'username': 'rap', 'password_hash': 'solo', 'roles': 'user'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "POST /users HTTP/1.1" 307 None
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "POST /users/ HTTP/1.1" 201 119
+INFO     root:auth.py:11 login
+DEBUG    root:auth.py:15 Request payload: {'username': 'rap', 'password': 'solo'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "POST /auth/login HTTP/1.1" 200 281
+INFO     root:users.py:30 get_current_user
+DEBUG    root:utils.py:12 Request headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJyYXAiLCJwYXNzd29yZF9oYXNoIjoiJDJiJDEyJDEucFRqRnZDMDZKbmVrUWJXS0ZKWS41dUh0RG5oYXZjUUMyQTVpSllXTUkvbDh0Sk8ybGplIiwicm9sZXMiOiJ1c2VyIn0.UYxLDw-O3NtgjBcX0rFlF65GVNmTvxMWXutcsk2CQwc', 'Accept': 'application/json'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "GET /users/me HTTP/1.1" 200 119
+INFO     root:users.py:19 create_user
+DEBUG    root:utils.py:12 Request headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJyYXAiLCJwYXNzd29yZF9oYXNoIjoiJDJiJDEyJDEucFRqRnZDMDZKbmVrUWJXS0ZKWS41dUh0RG5oYXZjUUMyQTVpSllXTUkvbDh0Sk8ybGplIiwicm9sZXMiOiJ1c2VyIn0.UYxLDw-O3NtgjBcX0rFlF65GVNmTvxMWXutcsk2CQwc', 'Accept': 'application/json', 'Conent-type': 'application/json'}
+DEBUG    root:users.py:24 Request payload: {'username': 'tony', 'password_hash': 'montana', 'roles': 'user'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "POST /users HTTP/1.1" 307 None
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "POST /users/ HTTP/1.1" 403 36
+INFO     root:users.py:37 delete_comment
+DEBUG    root:utils.py:12 Request headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJyYXAiLCJwYXNzd29yZF9oYXNoIjoiJDJiJDEyJDEucFRqRnZDMDZKbmVrUWJXS0ZKWS41dUh0RG5oYXZjUUMyQTVpSllXTUkvbDh0Sk8ybGplIiwicm9sZXMiOiJ1c2VyIn0.UYxLDw-O3NtgjBcX0rFlF65GVNmTvxMWXutcsk2CQwc', 'Accept': 'application/json'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "DELETE /users/6 HTTP/1.1" 403 36
+INFO     root:users.py:37 delete_comment
 DEBUG    root:utils.py:12 Request headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkX2hhc2giOiIkMmIkMTIkQS9vRVBVNU5lc3hjM3ozbXJQcTg5dTM4N3RoMy5wOTRsb2trcFd6NS5Ba0ZTWmtpSFV6SUciLCJyb2xlcyI6ImFkbWluIn0.lc0oKbSZSIqTMSgIGy9uwFG-J4tWJVf4bDGU35eic80', 'Accept': 'application/json'}
-DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "DELETE /comments/14 HTTP/1.1" 200 31
-DEBUG    root:test_comments.py:34 {'detail': 'Deleted comment 14'}
+DEBUG    urllib3.connectionpool:connectionpool.py:546 http://localhost:8080 "DELETE /users/6 HTTP/1.1" 200 27
